@@ -1,0 +1,82 @@
+/********************************************************************************
+Description.. :	
+
+Parameters... :	- 
+
+Returns...... :	- 
+
+Author....... :	SYSADM
+Date......... : 2024-03-12
+********************************************************************************
+_______________________________________________________________________________
+
+Ticket #..... : 
+Modification. : 
+Author....... :	
+Date......... :	
+_______________________________________________________________________________
+********************************************************************************/
+
+//BEGIN_GLOBAL_DECLARATIONS (place global declarations inside this section)
+
+var btnSend = form.All( "btnSend" ); // Button
+var cboClub = form.All( "cboClub" ); // ComboBox
+var cboPosition = form.All( "cboPosition" ); // ComboBox
+var cboName = form.All( "cboName" ); // ComboBox
+
+//END_GLOBAL_DECLARATIONS
+
+
+//region MODULE VARIABLES DECLARATIONS
+
+//endregion
+
+
+//region FORM LOAD / UNLOAD
+
+//endregion
+
+
+//region FORM EVENTS
+async function btnSend_OnClick( sender, eventArgs )
+{
+if (!ValidateRequiredFields())
+		return;
+	const SendPlayer = {
+            "NAME": cboName.SelectedValue,
+			"POSITION": cboPosition.SelectedValue,
+			"CLUB": cboClub.SelectedValue
+       
+        };
+
+        const HealthId = await lims.CallServerAsync("Player_Profile.SavePosition.Add", [SendPlayer]);
+        alert("Your report has been saved successfully");
+        form.Close();
+		
+}
+//endregion
+
+
+//region USER DEFINED FUNCTIONS
+function ValidateRequiredFields()
+{
+	const arReqFields = [ cboName, cboPosition, cboClub ];
+	let bValid = true;
+	
+	for(let i = 0; i < arReqFields.length; i++)
+	{
+		const fld = arReqFields[i];
+		fld.ShowError("");
+		
+		if (fld.Text.Trim().length == 0)
+		{
+		alert("FIELD REQUIRED");
+			fld.ShowError(form.Resources["RequiredField"]);
+			bValid = false;
+		}
+	}
+	
+	return bValid;
+}
+//endregion
+
