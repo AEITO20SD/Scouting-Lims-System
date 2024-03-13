@@ -1,0 +1,64 @@
+/********************************************************************************
+Description.. :	
+
+Parameters... :	- 
+
+Returns...... :	- 
+
+Author....... :	SYSADM
+Date......... : 2024-03-12
+********************************************************************************
+_______________________________________________________________________________
+
+Ticket #..... : 
+Modification. : 
+Author....... :	
+Date......... :	
+_______________________________________________________________________________
+********************************************************************************/
+
+//BEGIN_GLOBAL_DECLARATIONS (place global declarations inside this section)
+
+var dgdTips = form.All( "dgdTips" ); // DataGrid
+var btnView = form.All( "btnView" ); // Button
+
+//END_GLOBAL_DECLARATIONS
+
+
+//region MODULE VARIABLES DECLARATIONS
+
+//endregion
+
+
+//region FORM LOAD / UNLOAD
+
+//endregion
+
+
+//region FORM EVENTS
+async function btnView_OnClick( sender, eventArgs )
+{
+				var sURL = dgdTips.GetCurrentRowData("URL");
+	if(sURL && sURL.length > 2 && sURL[1] != ":") {
+		try
+		{
+			if (!sURL.toLowerCase().startsWith('http'))
+				sURL = "http://" + sURL;
+			window.open(sURL); 
+		}
+		catch (e)
+		{
+			await Dialogs.MessageBox(form.Resources["Cannot open URL: "] + sURL, form.Resources["Warning"], "OK", "WARNING");
+		}
+	}
+
+}
+//endregion
+
+
+//region USER DEFINED FUNCTIONS
+
+//endregion
+
+
+

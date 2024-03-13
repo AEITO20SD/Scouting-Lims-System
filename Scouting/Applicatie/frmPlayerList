@@ -1,0 +1,73 @@
+/********************************************************************************
+Description.. :	
+
+Parameters... :	- 
+
+Returns...... :	- 
+
+Author....... :	SYSADM
+Date......... : 2024-03-11
+********************************************************************************
+_______________________________________________________________________________
+
+Ticket #..... : 
+Modification. : 
+Author....... :	
+Date......... :	
+_______________________________________________________________________________
+********************************************************************************/
+
+//BEGIN_GLOBAL_DECLARATIONS (place global declarations inside this section)
+
+var btnDelete = form.All( "btnDelete" ); // Button
+var dgdList = form.All( "dgdList" ); // DataGrid
+
+//END_GLOBAL_DECLARATIONS
+
+
+//region MODULE VARIABLES DECLARATIONS
+
+//endregion
+
+
+//region FORM LOAD / UNLOAD
+
+//endregion
+
+
+//region FORM EVENTS
+async function btnAdd_OnClick( sender, eventArgs )
+{
+
+	form.ShowModelessDialog( lims.GetFormSource("Player_Profile.AddList"),
+								null, "BorderStyle=FixedToolWindow" );
+								dgdList.Refresh();
+
+}
+
+async function btnDelete_OnClick( sender, eventArgs )
+{
+	
+	const oktodelete = await Dialogs.MessageBox(form.Resources["suredelete"],form.Resources["Question"], "YESNO", "QUESTION");
+							
+ 	if (oktodelete=="YES")
+ 	{   
+	const nListId = dgdList.GetCurrentRowData("POSITION_ID");
+
+   const nId = await lims.CallServerAsync("Player_Profile.ListDelete.Delete", [nListId]);
+	
+   		dgdList.Refresh();
+	}
+
+}
+//endregion
+
+
+//region USER DEFINED FUNCTIONS
+
+//endregion
+
+
+
+
+

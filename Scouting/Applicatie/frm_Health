@@ -1,0 +1,95 @@
+/********************************************************************************
+Description.. :	
+
+Parameters... :	- 
+
+Returns...... :	- 
+
+Author....... :	SYSADM
+Date......... : 2024-03-06
+********************************************************************************
+_______________________________________________________________________________
+
+Ticket #..... : 
+Modification. : 
+Author....... :	
+Date......... :	
+_______________________________________________________________________________
+********************************************************************************/
+
+//BEGIN_GLOBAL_DECLARATIONS (place global declarations inside this section)
+
+var dgInfo2 = form.All( "dgInfo2" ); // DataGrid
+var dgInfo = form.All( "dgInfo" ); // DataGrid
+var dataGrid2  = form.All( "dataGrid2" ); // DataGrid
+
+//END_GLOBAL_DECLARATIONS
+
+
+//region MODULE VARIABLES DECLARATIONS
+
+//endregion
+
+
+//region FORM LOAD / UNLOAD
+
+//endregion
+
+
+//region FORM EVENTS
+
+
+async function button1_OnClick( sender, eventArgs )
+{
+form.ShowModelessDialog( lims.GetFormSource("Player_Profile.Player_health"),
+								null, "BorderStyle=FixedToolWindow" );
+								dgInfo.Refresh();
+}
+async function dataGrid2_OnRowChange(sender, eventArgs) {
+    var playerId = dataGrid2.GetCurrentRowData("ID");
+
+        dgInfo2.Data = await lims.GetDataSource("Player_Profile.DS_Healthgrids", [playerId]);
+        dgInfo.Data = await lims.GetDataSource("Player_Profile.DS_Healthgrids", [playerId]);
+		
+}
+
+async function btnReport_OnClick( sender, eventArgs )
+{	
+var strTitle = "Blood";
+var strReportName = "Player_Profile.frm_Health";
+var strFilter = null;
+var arParameters = null;
+var oShowOptions = null;
+
+ShowReport (strTitle, strReportName,strFilter,arParameters,oShowOptions);
+
+}
+
+
+async function button2_OnClick( sender, eventArgs )
+{
+
+	var sURL = dgInfo.GetCurrentRowData("FAT");
+if (sURL) {
+    try {
+        // Open het printvenster
+        window.print();
+    } catch (e) {
+        alert("Kan het printvenster niet openen: " + e.message);
+    }
+}
+
+
+}
+
+
+//endregion
+
+
+//region USER DEFINED FUNCTIONS
+
+//endregion
+
+
+
+

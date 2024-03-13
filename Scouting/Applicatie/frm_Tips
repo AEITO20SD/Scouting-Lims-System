@@ -1,0 +1,82 @@
+/********************************************************************************
+Description.. :	
+
+Parameters... :	- 
+
+Returns...... :	- 
+
+Author....... :	SYSADM
+Date......... : 2024-03-12
+********************************************************************************
+_______________________________________________________________________________
+
+Ticket #..... : 
+Modification. : 
+Author....... :	
+Date......... :	
+_______________________________________________________________________________
+********************************************************************************/
+
+//BEGIN_GLOBAL_DECLARATIONS (place global declarations inside this section)
+
+var dgdTipsEdit = form.All( "dgdTipsEdit" ); // DataGrid
+var btnSave = form.All( "btnSave" ); // Button
+var txtUrl = form.All( "txtUrl" ); // TextBox
+var txtTraining = form.All( "txtTraining" ); // TextBox
+
+//END_GLOBAL_DECLARATIONS
+
+
+//region MODULE VARIABLES DECLARATIONS
+
+//endregion
+
+
+//region FORM LOAD / UNLOAD
+
+//endregion
+
+
+//region FORM EVENTS
+
+//endregion
+
+
+//region USER DEFINED FUNCTIONS
+
+//endregion
+
+
+
+async function btnSave_OnClick( sender, eventArgs )
+{
+
+		const Training = {
+		"T_TYPE" : txtTraining.Text.Trim(),
+		"URL" : txtUrl.Text.Trim()
+	};
+	  await lims.CallServerAsync("Player_Profile.SaveTips.Add", [Training]);
+	 alert("Your report has been saved successfully");
+        form.Close();
+}
+
+
+async function button1_OnClick( sender, eventArgs )
+{
+
+		var sURL = dgdTipsEdit.GetCurrentRowData("URL");
+	if(sURL && sURL.length > 2 && sURL[1] != ":") {
+		try
+		{
+			if (!sURL.toLowerCase().startsWith('http'))
+				sURL = "http://" + sURL;
+			window.open(sURL); 
+		}
+		catch (e)
+		{
+			await Dialogs.MessageBox(form.Resources["Cannot open URL: "] + sURL, form.Resources["Warning"], "OK", "WARNING");
+		}
+	}
+
+
+}

@@ -1,0 +1,113 @@
+/********************************************************************************
+Description.. :	
+
+Parameters... :	- 
+
+Returns...... :	- 
+
+Author....... :	SYSADM
+Date......... : 2024-03-05
+********************************************************************************
+_______________________________________________________________________________
+
+Ticket #..... : 
+Modification. : 
+Author....... :	
+Date......... :	
+_______________________________________________________________________________
+********************************************************************************/
+
+//BEGIN_GLOBAL_DECLARATIONS (place global declarations inside this section)
+
+var cboName = form.All( "cboName" ); // ComboBox
+var txtFAT = form.All( "txtFAT" ); // TextBox
+var btnSave = form.All( "btnSave" ); // Button
+var txtReact = form.All( "txtReact" ); // TextBox
+var txtBalance = form.All( "txtBalance" ); // TextBox
+var txtAgy = form.All( "txtAgy" ); // TextBox
+var txtStrength = form.All( "txtStrength" ); // TextBox
+var txtFlex = form.All( "txtFlex" ); // TextBox
+var txtLung = form.All( "txtLung" ); // TextBox
+var txtBmi = form.All( "txtBmi" ); // TextBox
+var txtHeart = form.All( "txtHeart" ); // TextBox
+var txtBlood = form.All( "txtBlood" ); // TextBox
+
+//END_GLOBAL_DECLARATIONS
+
+
+//region MODULE VARIABLES DECLARATIONS
+
+//endregion
+
+
+//region FORM LOAD / UNLOAD
+
+//endregion
+
+
+//region FORM EVENTS
+async function btnSave_OnClick(sender, eventArgs) {
+    // Deactiveer de save button om herhaald klikken te voorkomen
+
+
+    try {
+        const HealthInfo = {
+            "PLAYER_ID": cboName.SelectedValue,
+            "Blood": txtBlood.Text.trim(),
+            "Heart": txtHeart.Text.trim(),
+            "Bmi": txtBmi.Text.trim(),
+            "FAT": txtFAT.Text.trim(),
+            "Lung": txtLung.Text.trim(),
+            "Flexibility": txtFlex.Text.trim(),
+            "Strength": txtStrength.Text.trim(),
+            "Balance": txtBalance.Text.trim(),
+            "Agility": txtAgy.Text.trim(),
+            "Reaction": txtReact.Text.trim()
+        };
+
+        const HealthId = await lims.CallServerAsync("Player_Profile.SaveHealth.AddHealth", [HealthInfo]);
+        alert("Your report has been saved successfully");
+        form.Close();
+    } catch (error) {
+        alert("An error occurred while saving the report: " + error);
+    }
+	
+}
+
+//endregion
+
+
+//region USER DEFINED FUNCTIONS
+
+//endregion
+
+
+
+//async function btnSave_OnClick( sender, eventArgs ){
+
+//const HealthInfo = {
+//				
+//						"PLAYER_ID": cboName.SelectedValue,
+//						"Blood" :txtBlood.Text.Trim(),
+//						"Heart" :txtHeart.Text.Trim(),
+//						"Bmi" :txtBmi.Text.Trim(),
+//						"FAT" :txtFAT.Text.Trim(),
+//						"Lung" :txtLung.Text.Trim(),
+//						"Flexibility" :txtFlex.Text.Trim(),
+//						"Strength" :txtStrength.Text.Trim(),
+//						"Balance" :txtBalance.Text.Trim(),
+//						"Agility" :txtAgy.Text.Trim(),
+//						"Reaction" :txtReact.Text.Trim(),
+//						
+//				
+//	};
+//	
+//	const HealthId = await lims.CallServerAsync("Player_Profile.SaveHealth.AddHealth", [HealthInfo]);
+//	alert("your report has been made")
+//	form.Close();
+//
+//}
+
+
+
+

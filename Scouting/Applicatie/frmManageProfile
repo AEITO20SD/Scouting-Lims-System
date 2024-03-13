@@ -1,0 +1,70 @@
+/********************************************************************************
+Description.. :	
+
+Parameters... :	- 
+
+Returns...... :	- 
+
+Author....... :	SYSADM
+Date......... : 2024-02-26
+********************************************************************************
+_______________________________________________________________________________
+
+Ticket #..... : 
+Modification. : 
+Author....... :	
+Date......... :	
+_______________________________________________________________________________
+********************************************************************************/
+
+//BEGIN_GLOBAL_DECLARATIONS (place global declarations inside this section)
+
+
+//END_GLOBAL_DECLARATIONS
+
+
+//region MODULE VARIABLES DECLARATIONS
+
+//endregion
+
+
+//region FORM LOAD / UNLOAD
+async function Form1_OnLoad( sender, eventArgs )
+{
+	//form.Close();
+	form.DisplayWaitMessage(true);
+	const bPlayerExists = await lims.CallServerAsync("Player_Profile.Player.PlayerExistsAsUser");
+	
+	if (!bPlayerExists)
+	{
+		// open add form
+		await form.ShowModalDialog(lims.GetFormSource("Player_Profile.Frm_Player_Profile"));
+	}
+	else
+	{
+		// open update form
+		const nPlayerId = await lims.CallServerAsync("Player_Profile.Player.GetMyPlayerId");
+		await form.ShowModalDialog(lims.GetFormSource("Player_Profile.dlgEditPlayer"), {
+			"playerId" : nPlayerId
+		});
+	}
+	
+	form.DisplayWaitMessage(false);
+	await form.Close();
+}
+//endregion
+
+
+//region FORM EVENTS
+
+//endregion
+
+
+//region USER DEFINED FUNCTIONS
+
+//endregion
+
+
+
+
+
