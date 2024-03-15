@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.starlims.com/html">
+  <xtype>StarlimsForm</xtype>
+  <Id>Form1</Id>
+  <Guid>2BCF4967-E94F-49AF-BFD2-694E5C4763B3</Guid>
+  <FromDesigner>true</FromDesigner>
+  <Visible>true</Visible>
+  <Enabled>true</Enabled>
+  <Left>0</Left>
+  <Top>0</Top>
+  <Height>480</Height>
+  <Width>640</Width>
+  <TabIndex>0</TabIndex>
+  <TabStop>true</TabStop>
+  <__array__Controls />
+  <Padding>0</Padding>
+  <Stretch>false</Stretch>
+  <AutoScroll>false</AutoScroll>
+  <DataOverridesValidatingType>false</DataOverridesValidatingType>
+  <RecordId>ORIGREC</RecordId>
+  <FormType>Player_Profile.frmManageProfile</FormType>
+  <IsExtJS6Plus>true</IsExtJS6Plus>
+  <UseNewEventsOrder>true</UseNewEventsOrder>
+  <__array__Scripts>
+    <item>
+      <Id>__CodeBehind__</Id>
+      <FromDesigner>true</FromDesigner>
+      <Src>RUNTIME_SUPPORT.GetXFDFormCodeBehind.lims?FormId=50046A3A-E7E7-4FDB-AAF8-79CCF2074970</Src>
+      <ScriptLanguage>javascript</ScriptLanguage>
+    </item>
+  </__array__Scripts>
+  <OnLoad>Form1_OnLoad</OnLoad>
+  <CloseOnEscape>false</CloseOnEscape>
+  <ValidateOnClose>false</ValidateOnClose>
+</Form>
