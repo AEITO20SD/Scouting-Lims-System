@@ -1,0 +1,5 @@
+DELETE FROM USERS WHERE ORIGREC = 98
+
+Select* from NL_PLAYER 
+
+delete from users 
