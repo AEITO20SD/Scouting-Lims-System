@@ -1,0 +1,20 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : STARLIMS
+Author....... : SYSADM
+Date......... :	2024-03-07
+Parameters... :	- 
+
+********************************************************************************/;
+		
+:RETURN GetDataSet("
+	select 
+	pl.ID,
+	pl.NAME
+		
+	from 
+		NL_PLAYER pl
+		
+	order by
+		pl.ID");

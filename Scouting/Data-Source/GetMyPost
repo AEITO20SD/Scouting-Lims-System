@@ -1,0 +1,30 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : SQL
+Author....... : SYSADM
+Date......... :	2024-02-29
+Parameters... :	- 
+
+********************************************************************************/;
+:PARAMETERS nPlayerId := 0;
+
+:RETURN GetDataSet("
+	Select 
+	po.ORIGREC,
+	p.NAME,
+		po.DESCRIPTION, 
+		po.URL,
+		po.PLAYER_ID,
+		p.USRNAM,
+		p.LOGDATE,
+		po.POST_ID
+		
+	From 
+		NL_POST po
+		join NL_PLAYER p on p.ID = po.PLAYER_ID
+	where
+		po.PLAYER_ID = ?
+	
+		order by
+			po.POST_ID", {nPlayerId});

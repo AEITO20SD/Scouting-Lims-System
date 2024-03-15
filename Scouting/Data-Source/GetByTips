@@ -1,0 +1,20 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : SQL
+Author....... : SYSADM
+Date......... :	2024-03-12
+Parameters... :	- 
+
+********************************************************************************/;
+:RETURN GetDataSet("
+	select 
+	ORIGREC,
+	T_TYPE,
+	URL
+		
+	from 
+		NL_Scouter
+		
+	order by
+		T_TYPE ");

@@ -1,0 +1,26 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : SQL
+Author....... : SYSADM
+Date......... :	2024-03-12
+Parameters... :	- 
+
+********************************************************************************/;
+:RETURN GetDataSet("
+	select 
+	ORIGREC,
+	POSITION_ID,
+	NAME,
+	POSITION,
+	CLUB,
+	USRNAM,
+	GOALS
+	
+		
+	from 
+		NL_POSITION
+	Where
+		USRNAM =?
+	order by
+		NAME", {MYUSERNAME});

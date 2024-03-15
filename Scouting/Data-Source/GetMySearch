@@ -1,0 +1,30 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : STARLIMS
+Author....... : SYSADM
+Date......... :	2024-03-01
+Parameters... :	- 
+
+********************************************************************************/;
+:RETURN GetDataSet("
+	select 
+		pl.ID, 
+		pl.NAME, 
+		pl.CITY, 
+		pl.EMAIL, 
+		pl.PHONE, 
+		pl.USRNAM, 
+		pl.LOGDATE,
+		po.DESCRIPTION,
+		po.URL
+		
+	from 
+		NL_PLAYER pl
+		join NL_POST po on po.PLAYER_ID = pl.ID 
+		
+	WHERE 
+		pl.USRNAM = ? 
+		
+	order by
+		pl.NAME", {MYUSERNAME});

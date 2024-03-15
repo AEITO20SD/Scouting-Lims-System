@@ -1,0 +1,32 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : SQL
+Author....... : SYSADM
+Date......... :	2024-03-07
+Parameters... :	- 
+
+********************************************************************************/;
+		
+:RETURN GetDataSet("
+	select 
+	pl.HEALTH_ID,
+		pl.BLOOD,
+		pl.HEART,
+		pl.BMI,
+		pl.FAT, 
+		pl.LUNG, 
+		pl.FLEXIBILITY,
+		pl.STRENGTH, 
+		pl.AGILITY,
+		pl.BALANCE,
+		pl.REACTION,
+		pl.PLAYER_ID
+		
+	from 
+		NL_health pl
+		
+	WHERE 
+		pl.HEALTH_ID = HEALTH_ID 
+	order by
+		pl.PLAYER_ID");

@@ -1,0 +1,28 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : STARLIMS
+Author....... : SYSADM
+Date......... :	2024-03-01
+Parameters... :	- 
+
+********************************************************************************/;
+
+		:RETURN GetDataSet("
+	select 
+		pl.ID, 
+		pl.NAME, 
+		pl.CITY, 
+		pl.EMAIL, 
+		pl.PHONE, 
+		pl.USRNAM, 
+		pl.LOGDATE,
+		attr.POSITION,
+		attr.CLUB
+		
+	from 
+		NL_PLAYER pl
+		join NL_ATTRIBUTE attr on attr.PLAYER_ID = pl.ID 
+		
+	WHERE 
+		pl.USRNAM = ? " , {MYUSERNAME});

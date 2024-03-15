@@ -1,0 +1,36 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : STARLIMS
+Author....... : SYSADM
+Date......... :	2024-03-14
+Parameters... :	- 
+
+********************************************************************************/;
+
+
+:DECLARE sSql;
+
+:IF PLATFORMA == "ORACLE";
+    sSql := "SELECT ORIGREC,
+                    event_id, 
+                    event_name, 
+                    event_date, 
+                    event_description
+                
+             FROM nl_events
+           
+             ORDER BY event_date";
+:ELSE;
+    sSql := "SELECT ORIGREC,  
+                    event_id, 
+                    event_name, 
+                    event_date, 
+                    event_description
+                   
+             FROM nl_events
+             
+             ORDER BY event_date";
+:ENDIF;
+
+:RETURN GetDataSet(sSql);

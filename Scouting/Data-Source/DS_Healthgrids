@@ -1,0 +1,36 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : STARLIMS
+Author....... : SYSADM
+Date......... :	2024-03-07
+Parameters... :	- 
+
+********************************************************************************/;
+-- Definieer de parameters en geef een standaardwaarde op
+:PARAMETERS sPlayerId := '91';
+
+-- Haal de relevante informatie op uit de NL_HEALTH tabel op basis van het opgegeven PLAYER_ID
+SELECT 
+	ORIGREC, 
+	ORIGSTS, 
+	BLOOD, 
+	HEART, 
+	BMI, 
+	FAT, 
+	LUNG,
+	FLEXIBILITY,
+	STRENGTH,
+	AGILITY, 
+	BALANCE, 
+	REACTION, 
+	HEALTH_ID,
+	PLAYER_ID
+FROM 
+	NL_HEALTH
+WHERE 
+	PLAYER_ID = @sPlayerId
+ORDER BY 
+	ORIGREC ASC
+
+

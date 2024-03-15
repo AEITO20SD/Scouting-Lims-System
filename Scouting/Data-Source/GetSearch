@@ -1,0 +1,30 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : SQL
+Author....... : SYSADM
+Date......... :	2024-02-29
+Parameters... :	- 
+
+********************************************************************************/
+:PARAMETERS FILTER :='%%';
+
+	select 
+		pl.ID, 
+		pl.NAME, 
+		pl.CITY, 
+		pl.EMAIL, 
+		pl.PHONE, 
+		pl.USRNAM, 
+		pl.LOGDATE,
+		attr.URL,
+		attr.DESCRIPTION,
+		at.POSITION
+		
+	from 
+		NL_PLAYER pl
+		join NL_POST attr on attr.PLAYER_ID = pl.ID
+		join NL_ATTRIBUTE at on at.PLAYER_ID = pl.ID 
+		
+	WHERE 
+		at.POSITION like @FILTER

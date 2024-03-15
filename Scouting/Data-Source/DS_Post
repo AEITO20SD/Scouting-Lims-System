@@ -1,0 +1,27 @@
+/********************************************************************************
+Description.. :	
+
+DS Type...... : SQL
+Author....... : SYSADM
+Date......... :	2024-03-07
+Parameters... :	- 
+
+********************************************************************************/
+:PARAMETERS sPostId:= '';
+
+SELECT 
+	po.ORIGREC, 
+	po.ORIGSTS, 
+	po.POST_ID,
+	po.DESCRIPTION,
+	po.URL,
+	po.PLAYER_ID,
+	p.LOGDATE
+FROM 
+	NL_POST po
+	join NL_PLAYER p on p.ID = po.PLAYER_ID
+WHERE 
+	PLAYER_ID = @sPostId
+ORDER BY 
+	ORIGREC ASC
+
